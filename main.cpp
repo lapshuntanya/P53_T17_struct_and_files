@@ -50,6 +50,7 @@ int main() {
         cout << "===========================================\n";
         cout << "0 - Save and Exit\n";
         cout << "1 - Show all cards.\n";
+        cout << "2 - Open a new card.\n";
         cout << "===========================================\n";
         cout << ">>> ";
         cin >> menu;
@@ -57,6 +58,12 @@ int main() {
         switch (menu) {
             case 0: saveArrayToBinFile(bank, sizeBank); break;
             case 1: showArrayCards(bank, sizeBank); break;
+            case 2: {
+                Card tmp; // name = "undefined", number =0, money = 0
+                cin.ignore();
+                tmp.createCard();
+                addItemBack(bank, sizeBank, tmp);
+            }break;
         }
     } while (menu != 0);
 
