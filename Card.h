@@ -44,9 +44,42 @@ struct Card {
         fread(&money, sizeof(double), 1, file);
     }
 
-};
+}; //end struct Card
 
 
+//====================================
+//Функції для масиву структур
+//====================================
+void showArrayCards(Card* arr, int size) {
+    for (int i = 0; i < size; i++) {
+        cout << i+1 << " ";
+        arr[i].showCard();
+    }
+}
 
+
+void saveArrayToBinFile(Card* arr, int size) {
+        FILE* file = nullptr;
+    #if VS_OR_CLION == 1
+        fopen_s(&file, "bank.bin", "wb"); //VS  !!!!!!!!!!!!
+    #elif VS_OR_CLION == 0
+        file = fopen("bank.bin", "wb"); //CLion, Online !!!!!!!!!!!!
+    #endif
+
+
+    if (file!=nullptr) {
+        fwrite(&size, sizeof(int), 1, file);
+        for (int i =0; i < size; i++) {
+            arr[i].saveCardToBinFile(file);
+        }
+        fclose(file);
+        cout << "Saved!\n";
+    }
+}
+
+
+void loadArrayFromBinFile(Card* arr, int size) {
+
+}
 
 #endif //P53_T17_STRUCT_AND_FILES_CARD_H
