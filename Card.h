@@ -104,5 +104,23 @@ void loadArrayFromBinFile(Card*& arr, int& size) {
 }
 
 
-void withdrawMoney(Card* arr, int size, )
+void withdrawMoney(Card* arr, int size, unsigned long user_number,  double user_money) {
+    int id = -1;
+    for (int i = 0; i < size; i++) {
+        if (arr[i].number == user_number)
+            id = i;
+    }
+
+    if ( id == -1)
+        cout << "Error: not found!\n";
+    else {
+        if (user_money > arr[id].money)
+            cout << "Error: " << arr[id].name << "has not " << user_money << "UAH\n";
+        else {
+            arr[id].money -= user_money;
+            cout << "Current balance: " << arr[id].money << "UAH\n";
+        }
+    }
+
+}
 #endif //P53_T17_STRUCT_AND_FILES_CARD_H
