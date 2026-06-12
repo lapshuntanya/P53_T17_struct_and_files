@@ -78,7 +78,28 @@ void saveArrayToBinFile(Card* arr, int size) {
 }
 
 
-void loadArrayFromBinFile(Card* arr, int size) {
+void loadArrayFromBinFile(Card*& arr, int& size) {
+
+    FILE* file = nullptr;
+#if VS_OR_CLION == 1
+    fopen_s(&file, "bank.bin", "rb"); //VS  !!!!!!!!!!!!
+#elif VS_OR_CLION == 0
+    file = fopen("bank.bin", "rb"); //CLion, Online !!!!!!!!!!!!
+#endif
+
+    if (file == nullptr) {
+        cout << "Error: not loaded!\n";
+        arr = nullptr;
+        size = 0;
+    }else {
+        fread(&size, sizeof(int), 1, file);
+        arr = new Card[size];
+        for (int i = 0; i < size; ++i) {
+            arr[i].loadCardFromBinFile(file);
+        }
+        fclose(file);
+        cout << "Loaded!\n";
+    }
 
 }
 
