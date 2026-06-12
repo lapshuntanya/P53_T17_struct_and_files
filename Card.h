@@ -103,4 +103,6 @@ void loadArrayFromBinFile(Card*& arr, int& size) {
 
 }
 
+
+void withdrawMoney(Card* arr, int size, )
 #endif //P53_T17_STRUCT_AND_FILES_CARD_H

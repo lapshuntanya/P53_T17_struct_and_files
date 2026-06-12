@@ -1,6 +1,6 @@
 #include "Card.h"
 
-#define CREATE_OR_LOAD 1 //CREATE 1, LOAD 0
+#define CREATE_OR_LOAD 0 //CREATE 1, LOAD 0
 
 int main() {
 
@@ -51,6 +51,9 @@ int main() {
         cout << "0 - Save and Exit\n";
         cout << "1 - Show all cards.\n";
         cout << "2 - Open a new card.\n";
+        cout << "3 - Sort cards by money\n";
+        cout << "4 - Withdraw cash\n";
+        cout << "5 - Close cards with 0 balance\n";
         cout << "===========================================\n";
         cout << ">>> ";
         cin >> menu;
@@ -64,7 +67,19 @@ int main() {
                 tmp.createCard();
                 addItemBack(bank, sizeBank, tmp);
             }break;
-        }
+            case 3:
+                mySort<Card>(bank, sizeBank, [](Card left, Card right) {
+                    return left.money > right.money;
+                });
+                break;
+            case 4: {
+                unsigned long user_number = 0;
+                double user_money = 0;
+                cout << "Input number of your card: ";
+                cout << "Input money: ";
+
+            }break;
+        }//end switch
     } while (menu != 0);
 
 
