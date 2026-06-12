@@ -76,8 +76,16 @@ int main() {
                 unsigned long user_number = 0;
                 double user_money = 0;
                 cout << "Input number of your card: ";
+                cin >> user_number;
                 cout << "Input money: ";
+                cin>> user_money;
 
+                withdrawMoney(bank, sizeBank, user_number, user_money);
+            }break;
+            case 5: {
+                myRemoveIf<Card>(bank, sizeBank, [](Card a) {
+                    return a.money ==0;
+                });
             }break;
         }//end switch
     } while (menu != 0);
